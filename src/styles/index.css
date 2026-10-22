@@ -75,6 +75,17 @@ input[aria-invalid="true"] { border-color: var(--bad); }
 .msg.error { color: var(--bad); }
 .placeholder { color: var(--muted); }
 
+.form-alert {
+  margin: 0 0 1rem;
+  padding: .75rem 1rem;
+  border: 1px solid var(--bad);
+  border-left-width: 6px;
+  border-radius: 8px;
+  background: #fdf1f0;
+  color: #8f2a22;
+  font-size: .9rem;
+}
+
 /* Mobile: buttons stacked, full width */
 .actions { display: flex; flex-direction: column; gap: .75rem; }
 button {

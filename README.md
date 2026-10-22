@@ -35,6 +35,7 @@ LoanEligibilitySimulator/
     │   └── mockEligibilityApi.js
     ├── utils/
     │   ├── loanCalculator.js
+    │   ├── validation.js
     │   └── format.js
     └── styles/
         └── index.css
