@@ -1,4 +1,4 @@
-import { MAX_RATIO, REVIEW_RATIO } from "../utils/loanCalc.js";
+import { MAX_RATIO, REVIEW_RATIO } from "../utils/loanCalculator.js";
 import { formatPercent } from "../utils/format.js";
 
 const SCALE = 0.7; // meter runs from 0% to 70% of income

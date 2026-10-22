@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TERMS } from "../utils/loanCalc.js";
+import { TERMS } from "../utils/loanCalculator.js";
 
 const empty = { income: "", expenses: "", amount: "", term: 60 };
 

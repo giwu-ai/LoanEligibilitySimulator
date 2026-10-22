@@ -1,6 +1,6 @@
 import {
   ANNUAL_RATE, MAX_RATIO, REVIEW_RATIO, monthlyPayment, maxPrincipal,
-} from "../utils/loanCalc.js";
+} from "../utils/loanCalculator.js";
 
 /**
  * Mocked eligibility check. Replace the body with a real fetch() later;
