@@ -75,17 +75,6 @@ input[aria-invalid="true"] { border-color: var(--bad); }
 .msg.error { color: var(--bad); }
 .placeholder { color: var(--muted); }
 
-.form-alert {
-  margin: 0 0 1rem;
-  padding: .75rem 1rem;
-  border: 1px solid var(--bad);
-  border-left-width: 6px;
-  border-radius: 8px;
-  background: #fdf1f0;
-  color: #8f2a22;
-  font-size: .9rem;
-}
-
 /* Mobile: buttons stacked, full width */
 .actions { display: flex; flex-direction: column; gap: .75rem; }
 button {
@@ -101,6 +90,17 @@ button.primary { background: var(--brand); color: #fff; }
 button.primary:hover:not(:disabled) { background: var(--brand-dark); }
 button.primary:disabled { opacity: .65; cursor: progress; }
 button.ghost { background: transparent; border-color: var(--line); color: var(--ink); }
+
+.form-alert {
+  margin: 0 0 1rem;
+  padding: .75rem 1rem;
+  border: 1px solid var(--bad);
+  border-left-width: 6px;
+  border-radius: 8px;
+  background: #fdf1f0;
+  color: #8f2a22;
+  font-size: .9rem;
+}
 
 /* ---------- Result ---------- */
 .result { border-top: 6px solid var(--line); }
@@ -148,6 +148,37 @@ button.ghost { background: transparent; border-color: var(--line); color: var(--
 .stats dt { color: var(--muted); font-size: .9rem; }
 .stats dd { margin: 0; font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 
+/* ---------- Loading state ---------- */
+.result { scroll-margin-top: 1rem; }
+.result.loading { border-top-color: var(--brand); }
+.loading-head { display: flex; align-items: center; gap: 1rem; }
+.loading-head h2 { margin: 0 0 .25rem; }
+.loading-head .msg { margin: 0; }
+.spinner {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border: 4px solid var(--line);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+.skeleton { margin-top: 1.5rem; display: grid; gap: .75rem; }
+.bar {
+  display: block;
+  height: 1rem;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--line) 25%, #e8eef2 50%, var(--line) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+.bar-meter { height: 14px; margin-bottom: .5rem; }
+.bar-wide { width: 100%; }
+.bar-mid { width: 70%; }
+.bar-short { width: 45%; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
 /* ==========================================================
    >= 600px  (large phones / small tablets)
    ========================================================== */
@@ -178,6 +209,7 @@ button.ghost { background: transparent; border-color: var(--line); color: var(--
   .result.approved { border-left-color: var(--ok); }
   .result.review   { border-left-color: var(--warn); }
   .result.declined { border-left-color: var(--bad); }
+  .result.loading  { border-left-color: var(--brand); }
 
   /* keep the result in view while the form is edited */
   .result { position: sticky; top: 1.5rem; }
@@ -194,4 +226,5 @@ button.ghost { background: transparent; border-color: var(--line); color: var(--
 /* ---------- Preferences ---------- */
 @media (prefers-reduced-motion: reduce) {
   .marker { transition: none; }
+  .spinner, .bar { animation: none; }
 }

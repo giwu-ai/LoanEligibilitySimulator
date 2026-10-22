@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import AffordabilityMeter from "./AffordabilityMeter.jsx";
 import { formatMoney, formatPercent } from "../utils/format.js";
 
@@ -16,14 +17,51 @@ const COPY = {
   },
 };
 
+function LoadingState() {
+  const ref = useRef(null);
+  const [slow, setSlow] = useState(false);
+
+  useEffect(() => {
+    // On stacked (mobile) layouts the result sits below the form, so bring it into view
+    if (!window.matchMedia("(min-width: 860px)").matches) {
+      ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    const timer = setTimeout(() => setSlow(true), 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <section
+      ref={ref}
+      className="panel result loading"
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
+    >
+      <div className="loading-head">
+        <span className="spinner" aria-hidden="true" />
+        <div>
+          <h2>Checking your eligibility…</h2>
+          <p className="msg">
+            {slow
+              ? "This is taking longer than usual. Please keep this page open."
+              : "Please wait while we work out your estimate."}
+          </p>
+        </div>
+      </div>
+      <div className="skeleton" aria-hidden="true">
+        <span className="bar bar-meter" />
+        <span className="bar bar-wide" />
+        <span className="bar bar-mid" />
+        <span className="bar bar-wide" />
+        <span className="bar bar-short" />
+      </div>
+    </section>
+  );
+}
+
 export default function ResultCard({ result, loading, error }) {
-  if (loading) {
-    return (
-      <section className="panel result" aria-live="polite">
-        <p className="placeholder">Checking your numbers…</p>
-      </section>
-    );
-  }
+  if (loading) return <LoadingState />;
   if (error) {
     return (
       <section className="panel result" aria-live="polite">
