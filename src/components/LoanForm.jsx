@@ -54,13 +54,13 @@ export default function LoanForm({ onSubmit, loading }) {
     <form className="panel" onSubmit={submit} noValidate>
       <h2>Your details</h2>
       {field("income", "Monthly income after tax (R)", "All regular income combined.")}
-      {field("expenses", "Monthly expenses (R)", "Rent, bills, food, existing debt payments.")}
+      {field("expenses", "Monthly expenses (R)", "Rent, bills, food, existing debt payments, others.")}
       {field("amount", "Loan amount (R)", "How much you'd like to borrow.")}
       <div className="field">
         <label htmlFor="term">Repayment period</label>
         <select id="term" value={values.term} onChange={set("term")}>
           {TERMS.map((m) => (
-            <option key={m} value={m}>{m} months</option>
+            <option key={m} value={m}>{m === 1 ? "1 month" : `${m} months`}</option>
           ))}
         </select>
       </div>
