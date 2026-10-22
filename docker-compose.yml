@@ -1,0 +1,9 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: loan-simulator
+    ports:
+      - "8080:80"   # http://localhost:8080
+    restart: unless-stopped
